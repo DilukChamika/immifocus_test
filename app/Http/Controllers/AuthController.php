@@ -9,6 +9,8 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+
+    // Register a new team member
     public function register(Request $request){
         $fields = $request->validate([
             'name' => 'required|max:50',
@@ -25,6 +27,7 @@ class AuthController extends Controller
         ];
     }
 
+    // Team member Login
     public function login(Request $request){
         $fields = $request->validate([
             'email' => 'required|email|exists:users',
@@ -46,6 +49,8 @@ class AuthController extends Controller
         ];
     }
 
+
+    // Logout
     public function logout(Request $request){
         $request->user()->tokens()->delete();
 

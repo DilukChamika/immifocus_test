@@ -20,18 +20,13 @@ class TaskController extends Controller implements HasMiddleware
     }
 
 
-    /**
-     * Display a listing of the resource.
-     */
+    // Display all tasks to do for team
     public function index()
     {
-
         return Task::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Add new Task
     public function store(Request $request)
     {
         $fields = $request->validate([
@@ -45,17 +40,14 @@ class TaskController extends Controller implements HasMiddleware
         return $task;
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Show a single task
     public function show(Task $task)
     {
         return $task;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Update a single task
+    // Can be done only by particular task creator
     public function update(Request $request, Task $task)
     {
         Gate::authorize('modify', $task);
@@ -71,9 +63,8 @@ class TaskController extends Controller implements HasMiddleware
         return $task;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Delete a single task
+    // Can be done only by particular task creator
     public function destroy(Task $task)
     {
         Gate::authorize('modify', $task);

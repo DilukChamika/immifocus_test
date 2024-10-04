@@ -14,6 +14,6 @@ class TaskPolicy
     {
         return $user->id === $post->user_id
             ? Response::allow()
-            :Response::deny('You are not the owner of this Task');
+            :Response::deny('You are not the creator of this Task');
     }
 }
